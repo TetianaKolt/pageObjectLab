@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.opencart.demo.helper.Helpers.sortProductList;
+
 public class DesktopPageTests extends BaseTest {
     private MainPage mainPage = new MainPage();
     private DesktopsPage desktopsPage;
@@ -20,7 +22,7 @@ public class DesktopPageTests extends BaseTest {
     SoftAssertions softAssertions;
     Helpers helpers;
 
-//**********************
+
     @Test                                               // Check that value in Show dropdown is 10
     public void checkTheValueInDropDownDesktops() {
         desktopsPage = new DesktopsPage();
@@ -34,7 +36,7 @@ public class DesktopPageTests extends BaseTest {
                 .as("Actual quantity of elements in Show is not as expected")
                 .isEqualTo(expectedQnttInShow);
     }
-// ******************************************
+
     @Test                                               // Check that value in Sort By is Default
     public void checkTheValueInSortBy() {
         String expectedValueInSortBy = "Default";
@@ -46,7 +48,7 @@ public class DesktopPageTests extends BaseTest {
                 .as("Actual value in Sort By is not as expected")
                 .isEqualTo(expectedValueInSortBy);
     }
-//*************************************************
+
     @Test                                               // Check that 10 products display on page
     public void checkDefaultQnttOfProductsDisplayed() {
         mainPage = new MainPage();
@@ -86,14 +88,13 @@ public class DesktopPageTests extends BaseTest {
 
     @Test                           //Check that products were sorted correctly (from A to Z)
     public void checkTheProductsSortedNamesAZ() {
-        helpers = new Helpers();
         List<String> actualProductsNamesList = new ArrayList<>();
         List<DesktopComponents> actualProductsList = mainPage.hoverOverDesktops()
                 .clickOnShowAllDesktops()
                 .chooseSortByOption(SortBy.MODEL_A_Z)
                 .getAllProducts();
 
-        helpers.sortProductList(actualProductsNamesList, actualProductsList);
+        sortProductList(actualProductsNamesList, actualProductsList);
 
         List<String> expectedNames = new ArrayList<>(actualProductsNamesList);
         Collections.sort(expectedNames);
@@ -102,8 +103,6 @@ public class DesktopPageTests extends BaseTest {
                 .as("Names are not sorted properly").isEqualTo(expectedNames);
 
     }
-
- ///// cut method sort from this place
 
     @Test                           //Check 'Price (Low > High)'
     public void checkTheProductsSortedPrice() {
@@ -120,7 +119,6 @@ public class DesktopPageTests extends BaseTest {
 
         List<Double> expectedPricesSortedList = new ArrayList<>(actualPricesList);
         Collections.sort(expectedPricesSortedList);
-
 
         Assertions.assertThat(actualPricesList)
                 .as("The price of the first product is bigger than the second")
