@@ -10,7 +10,7 @@ import java.util.List;
 
 public class FooterTests extends BaseTest {
 
-    @Test
+    @Test //Test #0
     public void testLabelsPresent() {
         MainPage mainPage = new MainPage();
         List<String> expectedBrandsToSee = Arrays.asList("Apple","Canon","Hewlett-Packard","HTC","Palm","Sony");
@@ -20,7 +20,8 @@ public class FooterTests extends BaseTest {
                .findAllBrandsNames();
 
         Assertions.assertThat(actualNames)
-                .as("List of brands differs from expected").containsAll(expectedBrandsToSee);
+                .as("List of brands differs from expected")
+                .containsAll(expectedBrandsToSee);
 
     }
 }

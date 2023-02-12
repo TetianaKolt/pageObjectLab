@@ -1,6 +1,6 @@
 package com.opencart.demo.pages;
 
-import com.opencart.demo.components.DesktopComponents;
+import com.opencart.demo.components.Products;
 import com.opencart.demo.enums.SortBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -45,13 +45,13 @@ public class DesktopsPage extends BasePage {
     }
 
     // PRODUCTS LIST
-    //// Get ALL products as list of DesktopComponents
-    public List<DesktopComponents> getAllProducts() {
-        List<DesktopComponents> products = new ArrayList<>();
+    //// Get ALL products as list of Products
+    public List<Products> getAllProducts() {
+        List<Products> products = new ArrayList<>();
         scroll(1000);
         List<WebElement> containers = findAll(productContainerLocator);
         for (WebElement container : containers) {
-            DesktopComponents desktopComponents = new DesktopComponents(container);
+            Products desktopComponents = new Products(container);
             products.add(desktopComponents);
         }
         return products;

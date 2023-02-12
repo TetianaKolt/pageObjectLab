@@ -11,7 +11,7 @@ public class RegistrationTests extends BaseTest {
     private String email = "forspam.jane.doe@gmail.com";
 
 
-    @Test
+    @Test //Test #1
     public void checkIfRedirectedToWelcomePage() {
 
         MainPage mainPage = new MainPage();

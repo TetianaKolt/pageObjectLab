@@ -1,10 +1,9 @@
 package ui;
 
+import com.opencart.demo.components.Products;
 import com.opencart.demo.enums.SortBy;
-import com.opencart.demo.helper.Helpers;
 import com.opencart.demo.pages.DesktopsPage;
 import com.opencart.demo.pages.MainPage;
-import com.opencart.demo.components.DesktopComponents;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
@@ -13,21 +12,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.opencart.demo.helper.Helpers.sortProductList;
+import static com.opencart.demo.helper.Helpers.getPricesFromList;
+import static com.opencart.demo.helper.Helpers.getNamesFromProductList;
 
 public class DesktopPageTests extends BaseTest {
     private MainPage mainPage = new MainPage();
     private DesktopsPage desktopsPage;
-
     SoftAssertions softAssertions;
-    Helpers helpers;
 
 
-    @Test                                               // Check that value in Show dropdown is 10
+    @Test    //Test #2
     public void checkTheValueInDropDownDesktops() {
         desktopsPage = new DesktopsPage();
-        String expectedQnttInShow = "10";
 
+        // Check that value in Show dropdown is 10
+        String expectedQnttInShow = "10";
         DesktopsPage desktopsPage = mainPage.hoverOverDesktops()
                 .clickOnShowAllDesktops();
         String actualQnttInShow = desktopsPage.getValueFromShowQnttOption();
@@ -37,8 +36,9 @@ public class DesktopPageTests extends BaseTest {
                 .isEqualTo(expectedQnttInShow);
     }
 
-    @Test                                               // Check that value in Sort By is Default
+    @Test //Test #2
     public void checkTheValueInSortBy() {
+        // Check that value in Sort By is Default
         String expectedValueInSortBy = "Default";
         String actualValueInSortBy = mainPage.hoverOverDesktops()
                 .clickOnShowAllDesktops()
@@ -49,9 +49,9 @@ public class DesktopPageTests extends BaseTest {
                 .isEqualTo(expectedValueInSortBy);
     }
 
-    @Test                                               // Check that 10 products display on page
+    @Test  //Test #2
     public void checkDefaultQnttOfProductsDisplayed() {
-        mainPage = new MainPage();
+        // Check that 10 products display on page
         int expectedQunttOfProducts = 10;
 
         int actualQunttOfProducts = mainPage.hoverOverDesktops()
@@ -63,9 +63,10 @@ public class DesktopPageTests extends BaseTest {
                 .isEqualTo(expectedQunttOfProducts);
     }
 
-    @Test                           //Select 25 from Show dropdown. Check that 12 products are now displayed
-                                    //Check that text 'Showing 1 to 12 of 12 (1 Pages)' displays on the bottom of the page
+    @Test //Test #2
     public void checkQnttOfProductsDisplayed() {
+        //Select 25 from Show dropdown. Check that 12 products are now displayed
+        //Check that text 'Showing 1 to 12 of 12 (1 Pages)' displays on the bottom of the page
         desktopsPage = new DesktopsPage();
         softAssertions = new SoftAssertions();
 
@@ -79,44 +80,44 @@ public class DesktopPageTests extends BaseTest {
         String actualQnttTextOnTheBottom = desktopsPage.getTextShownOnTheBottom();
 
         softAssertions.assertThat(actualQunttOfProducts)
-                .as("The quantity differs from expected").isEqualTo(expectedQunttOfProducts);
+                .as("The quantity differs from expected")
+                .isEqualTo(expectedQunttOfProducts);
         softAssertions.assertThat(actualQnttTextOnTheBottom)
-                .as("The text on the bottom differs from expected").isEqualTo(expectedQnttTextOnTheBottom);
+                .as("The text on the bottom differs from expected")
+                .isEqualTo(expectedQnttTextOnTheBottom);
         softAssertions.assertAll();
 
     }
 
-    @Test                           //Check that products were sorted correctly (from A to Z)
+    @Test //Test #3
     public void checkTheProductsSortedNamesAZ() {
-        List<String> actualProductsNamesList = new ArrayList<>();
-        List<DesktopComponents> actualProductsList = mainPage.hoverOverDesktops()
+        //Check that products were sorted correctly (from A to Z)
+        List<Products> actualProductList = mainPage.hoverOverDesktops()
                 .clickOnShowAllDesktops()
                 .chooseSortByOption(SortBy.MODEL_A_Z)
                 .getAllProducts();
 
-        sortProductList(actualProductsNamesList, actualProductsList);
+        List<String> actualProductNamesList = new ArrayList<>(getNamesFromProductList(actualProductList));
 
-        List<String> expectedNames = new ArrayList<>(actualProductsNamesList);
+        List<String> expectedNames = new ArrayList<>(actualProductNamesList);
         Collections.sort(expectedNames);
 
-        Assertions.assertThat(actualProductsNamesList)
-                .as("Names are not sorted properly").isEqualTo(expectedNames);
+        Assertions.assertThat(actualProductNamesList)
+                .as("Names are not sorted properly")
+                .isEqualTo(expectedNames);
 
     }
 
-    @Test                           //Check 'Price (Low > High)'
+    @Test //Test #3
     public void checkTheProductsSortedPrice() {
+        //Check 'Price (Low > High)'
         mainPage = new MainPage();
-        List<Double> actualPricesList = new ArrayList<>();
-        List<DesktopComponents> actualProductsList = mainPage.hoverOverDesktops()
+        List<Products> actualProductsList = mainPage.hoverOverDesktops()
                 .clickOnShowAllDesktops()
                 .chooseSortByOption(SortBy.PRICE_LOW_HIGH)
                 .getAllProducts();
 
-        for (DesktopComponents dc : actualProductsList) {
-            actualPricesList.add(dc.productPriceCurrentInt());
-        }
-
+        List<Double> actualPricesList = new ArrayList<>(getPricesFromList(actualProductsList));
         List<Double> expectedPricesSortedList = new ArrayList<>(actualPricesList);
         Collections.sort(expectedPricesSortedList);
 
@@ -124,6 +125,8 @@ public class DesktopPageTests extends BaseTest {
                 .as("The price of the first product is bigger than the second")
                 .isEqualTo(expectedPricesSortedList);
     }
+
+
 
 
 }

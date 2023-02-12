@@ -14,7 +14,7 @@ public enum SortBy {
     MODEL_A_Z("Model (A - Z)"),
     MODEL_Z_A("Model (Z - A)");
 
-    private String valueName;
+    private final String valueName;
 
     SortBy(String valueName) {
     this.valueName=valueName;

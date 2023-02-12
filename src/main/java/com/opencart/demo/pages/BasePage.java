@@ -44,6 +44,10 @@ public abstract class BasePage {
         return new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
+    protected void waitUntilPageIsLoaded(){
+        ((JavascriptExecutor) getDriver()).executeScript("return document.readyState").equals("complete");
+    }
+
 
     public void scroll(int pixels) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
