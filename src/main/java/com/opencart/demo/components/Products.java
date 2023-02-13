@@ -30,7 +30,7 @@ public class Products {
         this.productName = productNameWE.getText();
         this.description = container.findElement(By.xpath(".//div[@class='description']//p")).getText();
         this.productPriceCurrent = container.findElement(By.xpath(".//div[@class='price']//span[@class='price-new']")).getText();
-        this.productPriceCurrentAsDouble = Double.parseDouble(productPriceCurrent.replace(productPriceCurrent.substring(0,1), "").replace(",", ""));
+        this.productPriceCurrentAsDouble = Double.parseDouble(productPriceCurrent.replace(productPriceCurrent.substring(0, 1), "").replace(",", ""));
 
         try {
             this.productPriceOld = container.findElement(By.xpath(".//div[@class='price']//span[@class='price-old']")).getText();
@@ -40,14 +40,14 @@ public class Products {
 
         try {
             this.productPriceOldAsDouble = Double.parseDouble(productPriceOld.replace(productPriceCurrent.substring(0, 1), "").replace(",", ""));
-        } catch (Exception e){
+        } catch (Exception e) {
             this.productPriceOldAsDouble = 0;
         }
 
         this.productTax = container.findElement(By.xpath(".//div[@class='price']//span[@class='price-tax']")).getText();
         try {
             this.productTaxAsDouble = productPriceTaxDouble();
-        } catch (Exception e){
+        } catch (Exception e) {
             this.productTaxAsDouble = Double.valueOf(0);
         }
 
@@ -59,11 +59,10 @@ public class Products {
     public double productPriceTaxDouble() {
         StringBuilder number = new StringBuilder();
         for (int i = 0; i < this.productTax.length(); i++) {
-            if (Character.isDigit(this.productTax.charAt(i)) || this.productTax.charAt(i)=='.') {
+            if (Character.isDigit(this.productTax.charAt(i)) || this.productTax.charAt(i) == '.') {
                 number.append(this.productTax.charAt(i));
             }
         }
         return Double.parseDouble(String.valueOf(number));
     }
-
 }

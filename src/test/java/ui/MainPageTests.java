@@ -10,13 +10,15 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static com.opencart.demo.helper.Helpers.findProductByName;
+
 public class MainPageTests extends BaseTest {
 
     MainPage mainPage = new MainPage();
     SoftAssertions softAssertions;
 
 
-    @Test  (groups = {"Check currency and prices"})  //Test #4
+    @Test(groups = {"Check currency and prices"})  //Test #4
     public void changeCurrencyTest() {
         softAssertions = new SoftAssertions();
         ProductPage productPage = new ProductPage();
@@ -74,7 +76,7 @@ public class MainPageTests extends BaseTest {
         softAssertions.assertAll();
     }
 
-    @Test (groups = {"Check product attributes"})// Test #5
+    @Test(groups = {"Check product attributes"})// Test #5
     public void checkGroupOfProductsCameras() {
         softAssertions = new SoftAssertions();
 
@@ -92,7 +94,7 @@ public class MainPageTests extends BaseTest {
 
         // Check that Canon EOS 5D has old price 122.00
         double expectedOldPriceCanonEOS5D = 122.00;
-        double actualOldPriceCanonEOS5D = Helpers.findProductByName(mainPage.getAllProducts(), "Canon EOS 5D")
+        double actualOldPriceCanonEOS5D = findProductByName(mainPage.getAllProducts(), "Canon EOS 5D")
                 .getProductPriceOldAsDouble();
 
         softAssertions.assertThat(actualOldPriceCanonEOS5D)
@@ -101,7 +103,7 @@ public class MainPageTests extends BaseTest {
 
         // Check that Canon EOS 5D has new price 98.00
         double expectedNewPriceCanonEOS5D = 98.00;
-        double actualNewPriceCanonEOS5D = Helpers.findProductByName(mainPage.getAllProducts(), "Canon EOS 5D")
+        double actualNewPriceCanonEOS5D = findProductByName(mainPage.getAllProducts(), "Canon EOS 5D")
                 .getProductPriceCurrentAsDouble();
 
         softAssertions.assertThat(actualNewPriceCanonEOS5D)
@@ -110,7 +112,7 @@ public class MainPageTests extends BaseTest {
 
         // Check that Nikon D300 has ex tax rate 80.00
         double expectedExRateNikonD300 = 80.00;
-        double actualExRateNikonD300 = Helpers.findProductByName(mainPage.getAllProducts(), "Nikon D300")
+        double actualExRateNikonD300 = findProductByName(mainPage.getAllProducts(), "Nikon D300")
                 .getProductTaxAsDouble();
 
         softAssertions.assertThat(actualExRateNikonD300)

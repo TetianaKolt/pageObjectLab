@@ -9,7 +9,6 @@ public enum CurrencyList {
     POUND_STERLING("£ Pound Sterling");
 
     private final String currency;
-
     CurrencyList(String currency) {
         this.currency = currency;
     }

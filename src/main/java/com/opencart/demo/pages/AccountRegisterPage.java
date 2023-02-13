@@ -2,7 +2,7 @@ package com.opencart.demo.pages;
 
 import org.openqa.selenium.By;
 
-public class AccountRegisterPage extends BasePage{
+public class AccountRegisterPage extends BasePage {
 
     private final By firstNameLocator = By.id("input-firstname");
     private final By lastNameLocator = By.id("input-lastname");
@@ -10,7 +10,6 @@ public class AccountRegisterPage extends BasePage{
     private final By passwordLocator = By.id("input-password");
     private final By privacyPolicyCheckboxLocator = By.xpath("//input[@type='checkbox']");
     private final By continueButtonLocator = By.xpath("//button[@type='submit']");
-
 
 
     public AccountRegisterPage enterFirstName(String firstName) {
@@ -35,23 +34,22 @@ public class AccountRegisterPage extends BasePage{
 
     public AccountRegisterPage agreeWithPrivacyPolicy() {
         scroll(2000);
-        waitUntilClickable(privacyPolicyCheckboxLocator,3);
+        waitUntilClickable(privacyPolicyCheckboxLocator, 3);
         find(privacyPolicyCheckboxLocator).click();
         return this;
     }
 
-    public AccountRegisterPage clickContinueFail(){
+    public AccountRegisterPage clickContinueFail() {
         find(continueButtonLocator).click();
         return this;
     }
 
-    public AccountRegisterPage clickContinuePass(){
+    public AccountRegisterPage clickContinuePass() {
         find(continueButtonLocator).click();
         return this;
     }
 
-    public WelcomePage isRedirectedToWelcomePage(){
-
+    public WelcomePage isRedirectedToWelcomePage() {
         return new WelcomePage();
     }
 }

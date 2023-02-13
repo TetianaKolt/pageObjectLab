@@ -8,7 +8,6 @@ import java.util.List;
 
 @Getter
 public class TopMenuComponents {
-
     private WebElement currency;
     private String currencySymbol;
     private List<WebElement> currencyList;
@@ -18,7 +17,8 @@ public class TopMenuComponents {
     private WebElement shoppingCart;
     private WebElement checkout;
 
-    public TopMenuComponents(){}
+    public TopMenuComponents() {
+    }
 
     public TopMenuComponents(WebElement container) {
         this.currency = container.findElement(By.xpath(".//form[@id='form-currency']"));
@@ -30,13 +30,4 @@ public class TopMenuComponents {
         this.shoppingCart = container.findElement(By.xpath(".//i[@class='fas fa-shopping-cart']/parent::a[@title='Shopping Cart']"));
         this.checkout = container.findElement(By.xpath(".//a[@title='Checkout']"));
     }
-
-//    // Choose currency
-//    public void chooseCurrency(List<WebElement> currencyList, Enum<CurrencyList> currencyEnum) {
-//        for (WebElement cl : currencyList) {
-//            if (cl.getText().equals(currencyEnum.name())) {
-//                cl.click();
-//            }
-//        }
-//    }
 }

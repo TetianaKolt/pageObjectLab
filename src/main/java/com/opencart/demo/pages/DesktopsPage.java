@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DesktopsPage extends BasePage {
-
     private final By showingOnTheBottomTextLocator = By.xpath("//div[contains(text(),'Showing')]");
     private final By productContainerLocator = By.xpath("//div[@class='product-thumb']");
     private final By showQnttContainerLocator = By.id("input-limit");
@@ -62,7 +61,4 @@ public class DesktopsPage extends BasePage {
         scroll(8000);
         return getDriver().findElement(showingOnTheBottomTextLocator).getText();
     }
-
-
-
 }

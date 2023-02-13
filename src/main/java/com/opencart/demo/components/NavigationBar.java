@@ -6,15 +6,14 @@ import org.openqa.selenium.WebElement;
 
 @Getter
 public class NavigationBar {
-
-    private WebElement desktops;
-    private WebElement laptopsAndNotebooks;
-    private WebElement components;
-    private WebElement tablets;
-    private WebElement software;
-    private WebElement phonesAndPDAs;
-    private WebElement cameras;
-    private WebElement MP3players;
+    private final WebElement desktops;
+    private final WebElement laptopsAndNotebooks;
+    private final WebElement components;
+    private final WebElement tablets;
+    private final WebElement software;
+    private final WebElement phonesAndPDAs;
+    private final WebElement cameras;
+    private final WebElement MP3players;
 
     public NavigationBar(WebElement container) {
         this.desktops = container.findElement(By.xpath(".//ul[@class='nav navbar-nav']/li/a[contains(text(),'Desktops')]"));

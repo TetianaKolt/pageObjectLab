@@ -25,6 +25,7 @@ public class MainPage extends BasePage {
     public TopMenuComponents getTopMenu() {
         return new TopMenuComponents(getDriver().findElement(mainPageTopMenuContainerLocator));
     }
+
     public NavigationBar getNavigationBar() {
         return new NavigationBar(getDriver().findElement(navigationBarLocator));
     }
@@ -113,8 +114,8 @@ public class MainPage extends BasePage {
     public ProductPage findProductByNameClick(List<Products> products, String nameToSearch) {
         Products productToCheck = Helpers.findProductByName(products, nameToSearch);
         scroll(900);
-        waitUntilPresent(productContainerLocator,4);
-        waitUntilClickable(productContainerLocator,4);
+        waitUntilPresent(productContainerLocator, 4);
+        waitUntilClickable(productContainerLocator, 4);
         productToCheck.getProductImage().click();
         return new ProductPage();
     }

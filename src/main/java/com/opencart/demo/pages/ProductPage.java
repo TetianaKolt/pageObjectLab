@@ -4,7 +4,6 @@ import com.opencart.demo.components.TopMenuComponents;
 import com.opencart.demo.enums.CurrencyList;
 import com.opencart.demo.helper.Helpers;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductPage extends BasePage {
 
@@ -17,10 +16,10 @@ public class ProductPage extends BasePage {
 
     // Change the currency and find the product price
 
-    public double getPrice(Enum<CurrencyList> currency){
+    public double getPrice(Enum<CurrencyList> currency) {
         getTopMenu().getCurrency().click();
         Helpers.chooseCurrency(getTopMenu().getCurrencyList(), currency);
-        waitUntilPresent(price,5);
+        waitUntilPresent(price, 5);
         ////// The price isn't changed here below:
         String priceStr = find(price).getText();
         return Double.parseDouble(priceStr.replace(priceStr.substring(0, 1), ""));

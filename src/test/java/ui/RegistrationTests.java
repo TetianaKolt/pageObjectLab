@@ -5,16 +5,15 @@ import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
 public class RegistrationTests extends BaseTest {
-    private String firstName = "Jane";
-    private String lastName = "Doe";
-    private String pass = "1234janeDoe";
-    private String email = "forspam.jane.doe@gmail.com";
-
 
     @Test //Test #1
     public void checkIfRedirectedToWelcomePage() {
-
         MainPage mainPage = new MainPage();
+
+        String firstName = "Jane";
+        String lastName = "Doe";
+        String pass = "1234janeDoe";
+        String email = "forspam.jane.doe@gmail.com";
 
         String actualMessage =
                 mainPage.clickMyAccountIcon()

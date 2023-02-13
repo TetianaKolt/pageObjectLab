@@ -17,6 +17,6 @@ public enum SortBy {
     private final String valueName;
 
     SortBy(String valueName) {
-    this.valueName=valueName;
+        this.valueName = valueName;
     }
 }

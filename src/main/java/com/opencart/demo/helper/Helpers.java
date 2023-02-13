@@ -3,6 +3,7 @@ package com.opencart.demo.helper;
 import com.opencart.demo.components.Products;
 import com.opencart.demo.enums.CurrencyList;
 import org.openqa.selenium.WebElement;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class Helpers {
         }
         return names;
     }
+
     // Gets Prices from List of Web Elements
     public static List<Double> getPricesFromList(List<Products> actualProductsList) {
         List<Double> actualPricesList = new ArrayList<>();
@@ -35,7 +37,7 @@ public class Helpers {
     }
 
 
-    //Find product from the list by Name
+    //Finds product from the list by Name
     public static Products findProductByName(List<Products> listOfProducts, String nameToFind) {
         Products foundProduct = new Products();
         for (Products product : listOfProducts) {
