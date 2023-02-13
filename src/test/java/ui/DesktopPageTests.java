@@ -21,7 +21,7 @@ public class DesktopPageTests extends BaseTest {
     SoftAssertions softAssertions;
 
 
-    @Test    //Test #2
+    @Test  (groups = {"Show quantity"})  //Test #2
     public void checkTheValueInDropDownDesktops() {
         desktopsPage = new DesktopsPage();
 
@@ -36,7 +36,7 @@ public class DesktopPageTests extends BaseTest {
                 .isEqualTo(expectedQnttInShow);
     }
 
-    @Test //Test #2
+    @Test (groups = {"Sorting default"}) //Test #2
     public void checkTheValueInSortBy() {
         // Check that value in Sort By is Default
         String expectedValueInSortBy = "Default";
@@ -49,7 +49,7 @@ public class DesktopPageTests extends BaseTest {
                 .isEqualTo(expectedValueInSortBy);
     }
 
-    @Test  //Test #2
+    @Test  (groups = {"Show quantity"}) //Test #2
     public void checkDefaultQnttOfProductsDisplayed() {
         // Check that 10 products display on page
         int expectedQunttOfProducts = 10;
@@ -63,7 +63,7 @@ public class DesktopPageTests extends BaseTest {
                 .isEqualTo(expectedQunttOfProducts);
     }
 
-    @Test //Test #2
+    @Test (groups = {"Show quantity"})  //Test #2
     public void checkQnttOfProductsDisplayed() {
         //Select 25 from Show dropdown. Check that 12 products are now displayed
         //Check that text 'Showing 1 to 12 of 12 (1 Pages)' displays on the bottom of the page
@@ -89,7 +89,7 @@ public class DesktopPageTests extends BaseTest {
 
     }
 
-    @Test //Test #3
+    @Test (groups = {"Sorting by name"})  //Test #3
     public void checkTheProductsSortedNamesAZ() {
         //Check that products were sorted correctly (from A to Z)
         List<Products> actualProductList = mainPage.hoverOverDesktops()
@@ -108,7 +108,7 @@ public class DesktopPageTests extends BaseTest {
 
     }
 
-    @Test //Test #3
+    @Test (groups = {"Sorting by price"})//Test #3
     public void checkTheProductsSortedPrice() {
         //Check 'Price (Low > High)'
         mainPage = new MainPage();

@@ -16,7 +16,7 @@ public class MainPageTests extends BaseTest {
     SoftAssertions softAssertions;
 
 
-    @Test    //Test #4
+    @Test  (groups = {"Check currency and prices"})  //Test #4
     public void changeCurrencyTest() {
         softAssertions = new SoftAssertions();
         ProductPage productPage = new ProductPage();
@@ -74,7 +74,7 @@ public class MainPageTests extends BaseTest {
         softAssertions.assertAll();
     }
 
-    @Test // Test #5
+    @Test (groups = {"Check product attributes"})// Test #5
     public void checkGroupOfProductsCameras() {
         softAssertions = new SoftAssertions();
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Test2">
+
+    <test name="Check Desktops showing quantities and sorting default values">
+
+        <classes>
+            <class name="ui.DesktopPageTests"/>
+        </classes>
+    </test>
+
+    <test name="Show quantity of items o the page">
+          <groups>
+              <run>
+                  <include name="Show quantity"/>
+                  <include name="Sorting default"/>
+              </run>
+          </groups>
+    </test>
+
+</suite> <!-- Suite -->

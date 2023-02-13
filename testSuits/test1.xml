@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Test1">
+
+    <test name="Check if redirected to 'Welcome' after registration">
+
+        <classes>
+            <class name="ui.RegistrationTests"/>
+        </classes>
+    </test>
+
+
+</suite> <!-- Suite -->
