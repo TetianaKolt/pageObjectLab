@@ -49,9 +49,9 @@ public class Helpers {
     }
 
     // Choose currency
-    public static void chooseCurrency(List<WebElement> currencyList, Enum<CurrencyList> currencyEnum) {
+    public static void chooseCurrency(List<WebElement> currencyList, CurrencyList currencyEnum) {
         for (WebElement currencyListItem : currencyList) {
-            if (currencyListItem.getText().equals(currencyEnum.name())) {
+            if (currencyListItem.getText().equals(currencyEnum.getCurrency())) {
                 currencyListItem.click();
             }
         }

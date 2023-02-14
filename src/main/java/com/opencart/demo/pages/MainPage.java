@@ -12,6 +12,8 @@ import org.openqa.selenium.interactions.Actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.opencart.demo.helper.Helpers.findProductByName;
+
 
 public class MainPage extends BasePage {
     private final By mainPageTopMenuContainerLocator = By.id("top");
@@ -112,7 +114,7 @@ public class MainPage extends BasePage {
 
     // Find product by name and click
     public ProductPage findProductByNameClick(List<Products> products, String nameToSearch) {
-        Products productToCheck = Helpers.findProductByName(products, nameToSearch);
+        Products productToCheck = findProductByName(products, nameToSearch);
         scroll(900);
         waitUntilPresent(productContainerLocator, 4);
         waitUntilClickable(productContainerLocator, 4);
