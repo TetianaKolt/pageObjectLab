@@ -3,8 +3,7 @@ package com.opencart.demo.pages;
 import com.opencart.demo.components.NavigationBar;
 import com.opencart.demo.components.Products;
 import com.opencart.demo.components.TopMenuComponents;
-import com.opencart.demo.enums.CurrencyList;
-import com.opencart.demo.helper.Helpers;
+import com.opencart.demo.enums.CurrencyListEnums;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -79,7 +78,7 @@ public class MainPage extends BasePage {
     }
 
     // Check the currency by Default
-    public String checkCurrencySymbolChangeIfNot(Enum<CurrencyList> defaultSymbol) {
+    public String checkCurrencySymbolChangeIfNot(Enum<CurrencyListEnums> defaultSymbol) {
         String actualSymbol = getTopMenu().getCurrencySymbol();
         if (!actualSymbol.equals(defaultSymbol.name())) {
             getTopMenu().getCurrency().click();
@@ -89,7 +88,7 @@ public class MainPage extends BasePage {
     }
 
     // Choose currency in the top menu dropdown list
-    public MainPage chooseCurrency(Enum<CurrencyList> currencyEnum) {
+    public MainPage chooseCurrency(Enum<CurrencyListEnums> currencyEnum) {
         List<WebElement> currencyList = getTopMenu().getCurrencyList();
         for (WebElement cl : currencyList) {
             if (cl.getText().equals(currencyEnum.name())) {

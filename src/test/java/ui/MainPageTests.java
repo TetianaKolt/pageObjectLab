@@ -1,7 +1,7 @@
 package ui;
 
 import com.opencart.demo.components.Products;
-import com.opencart.demo.enums.CurrencyList;
+import com.opencart.demo.enums.CurrencyListEnums;
 import com.opencart.demo.helper.Helpers;
 import com.opencart.demo.pages.MainPage;
 import com.opencart.demo.pages.ProductPage;
@@ -36,13 +36,13 @@ public class MainPageTests extends BaseTest {
                 .isEqualTo(expectedCurrencySymbolByDefault);
 
         // if currency symbol is not $, change it
-        mainPage.checkCurrencySymbolChangeIfNot(CurrencyList.US_DOLLAR);
+        mainPage.checkCurrencySymbolChangeIfNot(CurrencyListEnums.US_DOLLAR);
 
         // Find the iPhone and click
         List<Products> products = mainPage.getAllProducts();
         mainPage.findProductByNameClick(products, "iPhone");
 
-        double actualPriceUSD = productPage.getPrice(CurrencyList.US_DOLLAR);
+        double actualPriceUSD = productPage.getPrice(CurrencyListEnums.US_DOLLAR);
         // Check the price
         softAssertions.assertThat(actualPriceUSD)
                 .as("The price in DOLLARS differs from expected")
@@ -53,11 +53,11 @@ public class MainPageTests extends BaseTest {
         productPage.getTopMenu()
                 .getCurrency()
                 .click();
-
+        Helpers.chooseCurrency(productPage.getTopMenu().getCurrencyList(), CurrencyListEnums.EURO).click();
 
         // Check that price 106.04
 
-        double actualPriceEUR = productPage.getPrice(CurrencyList.EURO);
+        double actualPriceEUR = productPage.getPrice(CurrencyListEnums.EURO);
         softAssertions.assertThat(actualPriceEUR)
                 .as("The price in EUR is not as expected")
                 .isEqualTo(expectedProductPriceEUR);
@@ -66,9 +66,10 @@ public class MainPageTests extends BaseTest {
         productPage.getTopMenu()
                 .getCurrency()
                 .click();
+        Helpers.chooseCurrency(productPage.getTopMenu().getCurrencyList(), CurrencyListEnums.POUND_STERLING).click();
 
         //Check that price is 95.32
-        double actualPricePOUNDS = productPage.getPrice(CurrencyList.POUND_STERLING);
+        double actualPricePOUNDS = productPage.getPrice(CurrencyListEnums.POUND_STERLING);
         softAssertions.assertThat(actualPricePOUNDS)
                 .as("The price in POUNDS is not as expected")
                 .isEqualTo(expectedProductPricePOUNDS);

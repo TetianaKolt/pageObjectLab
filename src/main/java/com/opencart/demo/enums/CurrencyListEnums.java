@@ -3,13 +3,13 @@ package com.opencart.demo.enums;
 import lombok.Getter;
 
 @Getter
-public enum CurrencyList {
+public enum CurrencyListEnums {
     EURO("€ Euro"),
     US_DOLLAR("$ US Dollar"),
     POUND_STERLING("£ Pound Sterling");
 
     private final String currency;
-    CurrencyList(String currency) {
+    CurrencyListEnums(String currency) {
         this.currency = currency;
     }
 }
