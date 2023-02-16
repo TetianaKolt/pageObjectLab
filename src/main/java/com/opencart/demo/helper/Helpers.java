@@ -2,6 +2,8 @@ package com.opencart.demo.helper;
 
 import com.opencart.demo.components.Products;
 import com.opencart.demo.enums.CurrencyListEnums;
+import com.opencart.demo.pages.BasePage;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -48,13 +50,17 @@ public class Helpers {
         return foundProduct;
     }
 
-    // Choose currency
-    public static WebElement chooseCurrency(List<WebElement> currencyList, CurrencyListEnums currencyEnum) {
-        WebElement currencyToClickAt = currencyList.get(1);
-        for (WebElement currencyListItem : currencyList) {
-            if (currencyListItem.getText().equals(currencyEnum.getCurrency())) {
-                currencyToClickAt = currencyListItem;
-            }
-        }return currencyToClickAt;
+
+
+    // Scroll
+    public static void scroll(int pixels) {
+        JavascriptExecutor jse = (JavascriptExecutor) BasePage.getDriver();
+        jse.executeScript("window.scrollBy(0," + pixels + ")");
     }
+
+    public static void scrollToElement(WebElement element) {
+        JavascriptExecutor jse = (JavascriptExecutor) BasePage.getDriver();
+        jse.executeScript("arguments[0].scrollIntoView(true);",element);
+    }
+
 }

@@ -4,7 +4,6 @@ import com.opencart.demo.components.Products;
 import com.opencart.demo.enums.SortBy;
 import com.opencart.demo.pages.DesktopsPage;
 import com.opencart.demo.pages.MainPage;
-import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
@@ -12,70 +11,54 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.opencart.demo.helper.Helpers.getPricesFromList;
 import static com.opencart.demo.helper.Helpers.getNamesFromProductList;
+import static com.opencart.demo.helper.Helpers.getPricesFromList;
 
 public class DesktopPageTests extends BaseTest {
     private MainPage mainPage = new MainPage();
-    private DesktopsPage desktopsPage;
-    SoftAssertions softAssertions;
 
-
-    @Test(groups = {"Show quantity"})  //Test #2
+    @Test
     public void checkTheValueInDropDownDesktops() {
-        desktopsPage = new DesktopsPage();
+        SoftAssertions softAssertions = new SoftAssertions();
+        DesktopsPage desktopsPage;
 
+        //Test #2
         // Check that value in Show dropdown is 10
         String expectedQnttInShow = "10";
-        DesktopsPage desktopsPage = mainPage.hoverOverDesktops()
+        desktopsPage = mainPage.hoverOverDesktops()
                 .clickOnShowAllDesktops();
         String actualQnttInShow = desktopsPage.getValueFromShowQnttOption();
 
-        Assertions.assertThat(actualQnttInShow)
+        softAssertions.assertThat(actualQnttInShow)
                 .as("Actual quantity of elements in Show is not as expected")
                 .isEqualTo(expectedQnttInShow);
-    }
 
-    @Test(groups = {"Sorting default"}) //Test #2
-    public void checkTheValueInSortBy() {
         // Check that value in Sort By is Default
         String expectedValueInSortBy = "Default";
         String actualValueInSortBy = mainPage.hoverOverDesktops()
                 .clickOnShowAllDesktops()
                 .getValueFromSortByOption();
 
-        Assertions.assertThat(actualValueInSortBy)
+        softAssertions.assertThat(actualValueInSortBy)
                 .as("Actual value in Sort By is not as expected")
                 .isEqualTo(expectedValueInSortBy);
-    }
 
-    @Test(groups = {"Show quantity"}) //Test #2
-    public void checkDefaultQnttOfProductsDisplayed() {
         // Check that 10 products display on page
         int expectedQunttOfProducts = 10;
-
         int actualQunttOfProducts = mainPage.hoverOverDesktops()
                 .clickOnShowAllDesktops()
                 .getAllProducts().size();
 
-        Assertions.assertThat(actualQunttOfProducts)
+        softAssertions.assertThat(actualQunttOfProducts)
                 .as("Quantity of products differs from expected quantity")
                 .isEqualTo(expectedQunttOfProducts);
-    }
 
-    @Test(groups = {"Show quantity"})  //Test #2
-    public void checkQnttOfProductsDisplayed() {
         //Select 25 from Show dropdown. Check that 12 products are now displayed
         //Check that text 'Showing 1 to 12 of 12 (1 Pages)' displays on the bottom of the page
-        desktopsPage = new DesktopsPage();
-        softAssertions = new SoftAssertions();
 
-        int expectedQunttOfProducts = 12;
+        expectedQunttOfProducts = 12;
         String expectedQnttTextOnTheBottom = "Showing 1 to 12 of 12 (1 Pages)";
-
-        int actualQunttOfProducts = mainPage.hoverOverDesktops()
-                .clickOnShowAllDesktops()
-                .chooseShowQnttOption("25")
+        actualQunttOfProducts = desktopsPage.chooseShowQnttOption("25")
                 .getAllProducts().size();
         String actualQnttTextOnTheBottom = desktopsPage.getTextShownOnTheBottom();
 
@@ -85,15 +68,11 @@ public class DesktopPageTests extends BaseTest {
         softAssertions.assertThat(actualQnttTextOnTheBottom)
                 .as("The text on the bottom differs from expected")
                 .isEqualTo(expectedQnttTextOnTheBottom);
-        softAssertions.assertAll();
-    }
 
-    @Test(groups = {"Sorting by name"})  //Test #3
-    public void checkTheProductsSortedNamesAZ() {
+
+        //Test #3
         //Check that products were sorted correctly (from A to Z)
-        List<Products> actualProductList = mainPage.hoverOverDesktops()
-                .clickOnShowAllDesktops()
-                .chooseSortByOption(SortBy.MODEL_A_Z)
+        List<Products> actualProductList = desktopsPage.chooseSortByOption(SortBy.MODEL_A_Z)
                 .getAllProducts();
 
         List<String> actualProductNamesList = new ArrayList<>(getNamesFromProductList(actualProductList));
@@ -101,27 +80,24 @@ public class DesktopPageTests extends BaseTest {
         List<String> expectedNames = new ArrayList<>(actualProductNamesList);
         Collections.sort(expectedNames);
 
-        Assertions.assertThat(actualProductNamesList)
+        softAssertions.assertThat(actualProductNamesList)
                 .as("Names are not sorted properly")
-                .isEqualTo(expectedNames);
-    }
+                .containsExactlyElementsOf(expectedNames);
 
-    @Test(groups = {"Sorting by price"})//Test #3
-    public void checkTheProductsSortedPrice() {
         //Check 'Price (Low > High)'
         mainPage = new MainPage();
-        List<Products> actualProductsList = mainPage.hoverOverDesktops()
-                .clickOnShowAllDesktops()
-                .chooseSortByOption(SortBy.PRICE_LOW_HIGH)
+        List<Products> actualProductsList = desktopsPage.chooseSortByOption(SortBy.PRICE_LOW_HIGH)
                 .getAllProducts();
 
         List<Double> actualPricesList = new ArrayList<>(getPricesFromList(actualProductsList));
         List<Double> expectedPricesSortedList = new ArrayList<>(actualPricesList);
         Collections.sort(expectedPricesSortedList);
 
-        Assertions.assertThat(actualPricesList)
+        softAssertions.assertThat(actualPricesList)
                 .as("The price of the first product is bigger than the second")
-                .isEqualTo(expectedPricesSortedList);
+                .containsExactlyElementsOf(expectedPricesSortedList);
+
+        softAssertions.assertAll();
     }
 }
 

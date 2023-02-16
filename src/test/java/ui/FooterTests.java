@@ -8,10 +8,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FooterTests extends BaseTest {
+    private final MainPage mainPage = new MainPage();
 
     @Test //Test #0
     public void testLabelsPresent() {
-        MainPage mainPage = new MainPage();
         List<String> expectedBrandsToSee = Arrays.asList("Apple", "Canon", "Hewlett-Packard", "HTC", "Palm", "Sony");
 
         List<String> actualNames = mainPage.goToTheFooter()
@@ -20,7 +20,6 @@ public class FooterTests extends BaseTest {
 
         Assertions.assertThat(actualNames)
                 .as("List of brands differs from expected")
-                .containsAll(expectedBrandsToSee);
-
+                .containsExactlyElementsOf(expectedBrandsToSee);
     }
 }

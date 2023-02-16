@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -30,6 +31,17 @@ public abstract class BasePage {
         return getDriver().findElements(locator);
     }
 
+    public void clickOnWebElement(WebElement webElement) {
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click()", webElement);
+    }
+
+    public void hoverOverElement(By locator) {
+        WebElement element = find(locator);
+        Actions action = new Actions(driver);
+        action.moveToElement(element).perform();
+    }
+
     protected WebElement waitUntilClickable(By locator, int seconds) {
         return new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.elementToBeClickable(locator));
     }
@@ -48,11 +60,6 @@ public abstract class BasePage {
         ((JavascriptExecutor) getDriver()).executeScript("return document.readyState").equals("complete");
     }
 
-
-    public void scroll(int pixels) {
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollBy(0," + pixels + ")");
-    }
 
 
 }

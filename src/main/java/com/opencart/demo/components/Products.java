@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
+import static com.opencart.demo.helper.CurrencyHelpers.productPriceAsDouble;
+
 @Getter
 public class Products {
     private WebElement productImage;
@@ -30,7 +32,7 @@ public class Products {
         this.productName = productNameWE.getText();
         this.description = container.findElement(By.xpath(".//div[@class='description']//p")).getText();
         this.productPriceCurrent = container.findElement(By.xpath(".//div[@class='price']//span[@class='price-new']")).getText();
-        this.productPriceCurrentAsDouble = Double.parseDouble(productPriceCurrent.replace(productPriceCurrent.substring(0, 1), "").replace(",", ""));
+        this.productPriceCurrentAsDouble = productPriceAsDouble(productPriceCurrent);
 
         try {
             this.productPriceOld = container.findElement(By.xpath(".//div[@class='price']//span[@class='price-old']")).getText();
@@ -39,16 +41,16 @@ public class Products {
         }
 
         try {
-            this.productPriceOldAsDouble = Double.parseDouble(productPriceOld.replace(productPriceCurrent.substring(0, 1), "").replace(",", ""));
+            this.productPriceOldAsDouble = productPriceAsDouble(productPriceOld);
         } catch (Exception e) {
             this.productPriceOldAsDouble = 0;
         }
 
         this.productTax = container.findElement(By.xpath(".//div[@class='price']//span[@class='price-tax']")).getText();
         try {
-            this.productTaxAsDouble = productPriceTaxDouble();
+            this.productTaxAsDouble = productPriceAsDouble(productTax);
         } catch (Exception e) {
-            this.productTaxAsDouble = Double.valueOf(0);
+            this.productTaxAsDouble = (double) 0;
         }
 
         this.addToCartButton = container.findElement(By.xpath(".//div[@class='button-group']//button[@data-bs-original-title='Add to Cart']"));
@@ -56,13 +58,4 @@ public class Products {
         this.compareThisProductButton = container.findElement(By.xpath(".//div[@class='button-group']//button[@data-bs-original-title='Compare this Product']"));
     }
 
-    public double productPriceTaxDouble() {
-        StringBuilder number = new StringBuilder();
-        for (int i = 0; i < this.productTax.length(); i++) {
-            if (Character.isDigit(this.productTax.charAt(i)) || this.productTax.charAt(i) == '.') {
-                number.append(this.productTax.charAt(i));
-            }
-        }
-        return Double.parseDouble(String.valueOf(number));
-    }
 }

@@ -1,34 +1,32 @@
 package ui;
 
+import com.opencart.demo.helper.FakeStringsHelper;
 import com.opencart.demo.pages.MainPage;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
+import static com.opencart.demo.helper.FakeStringsHelper.*;
+
 public class RegistrationTests extends BaseTest {
+    private final MainPage mainPage = new MainPage();
 
     @Test //Test #1
     public void checkIfRedirectedToWelcomePage() {
-        MainPage mainPage = new MainPage();
-
-        String firstName = "Jane";
-        String lastName = "Doe";
-        String pass = "1234janeDoe";
-        String email = "forspam.jane.doe@gmail.com";
-
         String actualMessage =
                 mainPage.clickMyAccountIcon()
                         .clickRegisterButton()
-                        .enterFirstName(firstName)
-                        .enterLastName(lastName)
-                        .enterEmail(email)
-                        .enterPassword(pass)
+                        .enterFirstName(generateFakeFirstName())
+                        .enterLastName(generateFakeLastName())
+                        .enterEmail(generateFakeEmail())
+                        .enterPassword(generateFakePassword())
                         .agreeWithPrivacyPolicy()
                         .clickContinuePass()
                         .isRedirectedToWelcomePage()
                         .getTitleName();
 
         Assertions.assertThat(actualMessage)
-                .as("You are not redirected to Welcome page").isNotNull();
+                .as("You are not redirected to Welcome page")
+                .isEqualTo("Welcome");
 
     }
 }

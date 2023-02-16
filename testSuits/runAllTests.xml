@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Run all tests">
+
+    <test name="Test #0">
+        <classes>
+            <class name="ui.FooterTests"/>
+        </classes>
+    </test>
+
+    <test name="Test #1">
+        <classes>
+            <class name="ui.RegistrationTests"/>
+        </classes>
+    </test>
+
+    <test name="Test #2, 3">
+        <classes>
+            <class name="ui.DesktopPageTests"/>
+        </classes>
+    </test>
+
+    <test name="Test #4">
+        <classes>
+            <class name="ui.CurrencyTests"/>
+        </classes>
+    </test>
+    <test name="Test #5">
+        <classes>
+            <class name="ui.CamerasTest"/>
+        </classes>
+    </test>
+
+</suite> <!-- Suite -->

@@ -4,7 +4,9 @@ import com.opencart.demo.components.NavigationBar;
 import com.opencart.demo.components.Products;
 import com.opencart.demo.components.TopMenuComponents;
 import com.opencart.demo.enums.CurrencyListEnums;
+import com.opencart.demo.helper.Helpers;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
@@ -17,10 +19,10 @@ import static com.opencart.demo.helper.Helpers.findProductByName;
 public class MainPage extends BasePage {
     private final By mainPageTopMenuContainerLocator = By.id("top");
     private final By navigationBarLocator = By.id("menu");
-    private final By registerButton = By.xpath("//ul[@class='dropdown-menu dropdown-menu-right show']//a[@class='dropdown-item' and text()='Register']");
+    private final By registerButton = By.xpath("//ul[@class='dropdown-menu dropdown-menu-right show']/li[1]/a");
     private final By brandsLocator = By.xpath("//li/a[contains(text(),'Brands')]");
     private final By desktopButtonLocator = By.xpath("//li/a[contains(text(),'Desktops')]/parent::li");
-    private final By dropDownListSeeAllDesktopsLocator = By.xpath("//div[@class='dropdown-menu show']//a[@class='see-all']");
+    private final By dropDownListSeeAllDesktopsLocator = By.xpath("//ul[@class='nav navbar-nav']/li[1]//a[@class='see-all']");
     private final By productContainerLocator = By.xpath("//div[@class='product-thumb']");
 
     public TopMenuComponents getTopMenu() {
@@ -43,28 +45,27 @@ public class MainPage extends BasePage {
 
     // Click the "Register" button
     public AccountRegisterPage clickRegisterButton() {
-        getTopMenu().getMyAccountButton().findElement(registerButton).click();
+        find(registerButton).click();
         return new AccountRegisterPage();
     }
 
     // Move down to the footer on the MainPage
     public MainPage goToTheFooter() {
-        scroll(900);
+        Helpers.scrollToElement(find(brandsLocator));
         return this;
     }
 
     // Go to the "Brands" page
     public BrandsPage clickBrands() {
-        waitUntilClickable(brandsLocator, 6);
-        find(brandsLocator).click();
+        WebElement element = find(brandsLocator);
+        clickOnWebElement(element);
         return new BrandsPage();
     }
 
     // Hover over "Desctops" to see the dropdown list
     public MainPage hoverOverDesktops() {
-        WebElement deskTopButton = find(desktopButtonLocator);
-        getActions().moveToElement(deskTopButton).build().perform();
-        deskTopButton.click();
+        hoverOverElement(desktopButtonLocator);
+        waitUntilVisible(dropDownListSeeAllDesktopsLocator,1);
         return this;
     }
 
@@ -102,7 +103,6 @@ public class MainPage extends BasePage {
     //// Get ALL products as list of Products
     public List<Products> getAllProducts() {
         List<Products> products = new ArrayList<>();
-        scroll(400);
         List<WebElement> containers = findAll(productContainerLocator);
         for (WebElement container : containers) {
             Products desktopComponents = new Products(container);
@@ -114,7 +114,6 @@ public class MainPage extends BasePage {
     // Find product by name and click
     public ProductPage findProductByNameClick(List<Products> products, String nameToSearch) {
         Products productToCheck = findProductByName(products, nameToSearch);
-        scroll(900);
         waitUntilPresent(productContainerLocator, 4);
         waitUntilClickable(productContainerLocator, 4);
         productToCheck.getProductImage().click();

@@ -5,8 +5,9 @@ import com.opencart.demo.enums.CurrencyListEnums;
 import com.opencart.demo.helper.Helpers;
 import org.openqa.selenium.By;
 
-public class ProductPage extends BasePage {
+import static com.opencart.demo.helper.CurrencyHelpers.chooseCurrency;
 
+public class ProductPage extends BasePage {
     private final By mainPageTopMenuContainerLocator = By.id("top");
     private final By price = By.xpath("//h2/span[@class='price-new']");
 
@@ -18,12 +19,12 @@ public class ProductPage extends BasePage {
 
     public double getPrice(CurrencyListEnums currency) {
         getTopMenu().getCurrency().click();
-        Helpers.chooseCurrency(getTopMenu().getCurrencyList(), currency).click();
+        chooseCurrency(getTopMenu().getCurrencyList(), currency);
         waitUntilPresent(price, 5);
         waitUntilPageIsLoaded();
         String priceStr = find(price).getText();
-//        return Double.parseDouble((priceStr.replace(priceStr.substring(0, 1), "")));
         double price;
+
         if(priceStr.contains("$")){
             price = Double.parseDouble((priceStr.replace("$", "")).trim());
         } else if (priceStr.contains("€")) {

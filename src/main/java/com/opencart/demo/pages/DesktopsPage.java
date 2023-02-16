@@ -2,6 +2,7 @@ package com.opencart.demo.pages;
 
 import com.opencart.demo.components.Products;
 import com.opencart.demo.enums.SortBy;
+import com.opencart.demo.helper.Helpers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -47,7 +48,7 @@ public class DesktopsPage extends BasePage {
     //// Get ALL products as list of Products
     public List<Products> getAllProducts() {
         List<Products> products = new ArrayList<>();
-        scroll(1000);
+        Helpers.scroll(1000);
         List<WebElement> containers = findAll(productContainerLocator);
         for (WebElement container : containers) {
             Products desktopComponents = new Products(container);
@@ -58,7 +59,7 @@ public class DesktopsPage extends BasePage {
 
     // GET THE TEXT ON THE BOTTOM OF THE PAGE (e.g. "Showing 1 to 12 of 12 (1 Pages)")
     public String getTextShownOnTheBottom() {
-        scroll(8000);
+        Helpers.scroll(8000);
         return getDriver().findElement(showingOnTheBottomTextLocator).getText();
     }
 }

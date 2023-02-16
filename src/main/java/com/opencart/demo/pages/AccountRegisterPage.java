@@ -1,5 +1,6 @@
 package com.opencart.demo.pages;
 
+import com.opencart.demo.helper.Helpers;
 import org.openqa.selenium.By;
 
 public class AccountRegisterPage extends BasePage {
@@ -33,7 +34,7 @@ public class AccountRegisterPage extends BasePage {
     }
 
     public AccountRegisterPage agreeWithPrivacyPolicy() {
-        scroll(2000);
+        Helpers.scroll(2000);
         waitUntilClickable(privacyPolicyCheckboxLocator, 3);
         find(privacyPolicyCheckboxLocator).click();
         return this;
