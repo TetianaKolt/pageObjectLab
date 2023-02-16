@@ -9,13 +9,13 @@ import java.util.List;
 
 import static com.opencart.demo.helper.Helpers.findProductByName;
 
-public class CamerasTest extends BaseTest{
+public class CamerasTest extends BaseTest {
     private final MainPage mainPage = new MainPage();
 
-    @Test
+    @Test         // Test #5
     public void camerasTest() {
         SoftAssertions softAssertions = new SoftAssertions();
-        // Test #5
+
         mainPage.getNavigationBar()
                 .getCameras()
                 .click();
@@ -56,7 +56,6 @@ public class CamerasTest extends BaseTest{
         softAssertions.assertThat(actualExRateNikonD300)
                 .as("Ex Tax Rate is not the same as expected")
                 .isEqualTo(expectedExRateNikonD300);
-
         softAssertions.assertAll();
     }
 }

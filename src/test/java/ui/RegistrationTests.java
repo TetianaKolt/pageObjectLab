@@ -21,7 +21,6 @@ public class RegistrationTests extends BaseTest {
                         .enterPassword(generateFakePassword())
                         .agreeWithPrivacyPolicy()
                         .clickContinuePass()
-                        .isRedirectedToWelcomePage()
                         .getTitleName();
 
         Assertions.assertThat(actualMessage)

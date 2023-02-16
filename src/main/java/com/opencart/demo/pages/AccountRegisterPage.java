@@ -45,12 +45,9 @@ public class AccountRegisterPage extends BasePage {
         return this;
     }
 
-    public AccountRegisterPage clickContinuePass() {
+    public WelcomePage clickContinuePass() {
         find(continueButtonLocator).click();
-        return this;
-    }
-
-    public WelcomePage isRedirectedToWelcomePage() {
         return new WelcomePage();
     }
+
 }

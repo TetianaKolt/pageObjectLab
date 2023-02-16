@@ -11,7 +11,6 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 import static com.opencart.demo.helper.CurrencyHelpers.chooseCurrency;
-import static com.opencart.demo.helper.Helpers.findProductByName;
 
 public class CurrencyTests extends BaseTest {
 
@@ -73,8 +72,6 @@ public class CurrencyTests extends BaseTest {
         softAssertions.assertThat(actualPricePOUNDS)
                 .as("The price in POUNDS is not as expected")
                 .isEqualTo(expectedProductPricePOUNDS);
-
-
 
         softAssertions.assertAll();
     }
