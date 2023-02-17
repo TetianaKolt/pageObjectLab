@@ -4,6 +4,8 @@ import framework.pages.MainPage;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
+import static framework.helper.FakeStringsHelper.*;
+
 public class RegistrationTests extends BaseTest {
     private final MainPage mainPage = new MainPage();
 

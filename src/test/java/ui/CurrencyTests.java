@@ -49,9 +49,6 @@ public class CurrencyTests extends BaseTest {
 
         // Change currency to euro
         List<WebElement> currencyList = productPage.getTopMenu().getCurrencyList();
-//        productPage.getTopMenu()
-//                .getCurrency()
-//                .click();
         chooseCurrency(currencyList, CurrencyListEnums.EURO);
 
         // Check that price 106.04
@@ -62,9 +59,9 @@ public class CurrencyTests extends BaseTest {
                 .isEqualTo(expectedProductPriceEUR);
 
         //Change currency to Pound Sterling
-        productPage.getTopMenu()
-                .getCurrency()
-                .click();
+//        productPage.getTopMenu()
+//                .getCurrency()
+//                .click();
         chooseCurrency(currencyList, CurrencyListEnums.POUND_STERLING);
 
         //Check that price is 95.32
