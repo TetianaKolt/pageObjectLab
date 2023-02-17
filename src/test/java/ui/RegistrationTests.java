@@ -1,11 +1,8 @@
 package ui;
 
-import com.opencart.demo.helper.FakeStringsHelper;
-import com.opencart.demo.pages.MainPage;
+import framework.pages.MainPage;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
-
-import static com.opencart.demo.helper.FakeStringsHelper.*;
 
 public class RegistrationTests extends BaseTest {
     private final MainPage mainPage = new MainPage();
@@ -20,7 +17,7 @@ public class RegistrationTests extends BaseTest {
                         .enterEmail(generateFakeEmail())
                         .enterPassword(generateFakePassword())
                         .agreeWithPrivacyPolicy()
-                        .clickContinuePass()
+                        .clickContinue()
                         .getTitleName();
 
         Assertions.assertThat(actualMessage)

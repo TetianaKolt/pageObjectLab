@@ -1,6 +1,6 @@
 package ui;
 
-import com.opencart.demo.pages.BasePage;
+import framework.pages.BasePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

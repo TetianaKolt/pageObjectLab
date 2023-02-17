@@ -1,4 +1,4 @@
-package com.opencart.demo.enums;
+package framework.enums;
 
 import lombok.Getter;
 

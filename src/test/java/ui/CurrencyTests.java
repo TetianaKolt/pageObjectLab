@@ -1,16 +1,16 @@
 package ui;
 
-import com.opencart.demo.components.Products;
-import com.opencart.demo.enums.CurrencyListEnums;
-import com.opencart.demo.pages.MainPage;
-import com.opencart.demo.pages.ProductPage;
+import framework.components.Products;
+import framework.enums.CurrencyListEnums;
+import framework.pages.MainPage;
+import framework.pages.ProductPage;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static com.opencart.demo.helper.CurrencyHelpers.chooseCurrency;
+import static framework.helper.CurrencyHelpers.chooseCurrency;
 
 public class CurrencyTests extends BaseTest {
 

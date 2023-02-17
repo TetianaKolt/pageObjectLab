@@ -1,4 +1,4 @@
-package com.opencart.demo.pages;
+package framework.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

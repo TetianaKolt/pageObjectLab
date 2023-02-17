@@ -1,11 +1,9 @@
-package com.opencart.demo.pages;
+package framework.pages;
 
-import com.opencart.demo.components.TopMenuComponents;
-import com.opencart.demo.enums.CurrencyListEnums;
-import com.opencart.demo.helper.Helpers;
+import framework.components.TopMenuComponents;
+import framework.enums.CurrencyListEnums;
+import framework.helper.CurrencyHelpers;
 import org.openqa.selenium.By;
-
-import static com.opencart.demo.helper.CurrencyHelpers.chooseCurrency;
 
 public class ProductPage extends BasePage {
     private final By mainPageTopMenuContainerLocator = By.id("top");
@@ -19,7 +17,7 @@ public class ProductPage extends BasePage {
 
     public double getPrice(CurrencyListEnums currency) {
         getTopMenu().getCurrency().click();
-        chooseCurrency(getTopMenu().getCurrencyList(), currency);
+        CurrencyHelpers.chooseCurrency(getTopMenu().getCurrencyList(), currency);
         waitUntilPresent(price, 5);
         waitUntilPageIsLoaded();
         String priceStr = find(price).getText();

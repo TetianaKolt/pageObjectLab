@@ -1,4 +1,4 @@
-package com.opencart.demo.components;
+package framework.components;
 
 import lombok.Getter;
 import org.openqa.selenium.By;

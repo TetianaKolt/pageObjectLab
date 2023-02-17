@@ -1,6 +1,6 @@
 package ui;
 
-import com.opencart.demo.pages.MainPage;
+import framework.pages.MainPage;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 

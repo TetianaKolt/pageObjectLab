@@ -1,9 +1,9 @@
 package ui;
 
-import com.opencart.demo.components.Products;
-import com.opencart.demo.enums.SortBy;
-import com.opencart.demo.pages.DesktopsPage;
-import com.opencart.demo.pages.MainPage;
+import framework.components.Products;
+import framework.enums.SortBy;
+import framework.pages.DesktopsPage;
+import framework.pages.MainPage;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.opencart.demo.helper.Helpers.getNamesFromProductList;
-import static com.opencart.demo.helper.Helpers.getPricesFromList;
+import static framework.helper.Helpers.getNamesFromProductList;
+import static framework.helper.Helpers.getPricesFromList;
 
 public class DesktopPageTests extends BaseTest {
     private MainPage mainPage = new MainPage();

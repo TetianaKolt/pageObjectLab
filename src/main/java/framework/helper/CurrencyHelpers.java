@@ -1,6 +1,6 @@
-package com.opencart.demo.helper;
+package framework.helper;
 
-import com.opencart.demo.enums.CurrencyListEnums;
+import framework.enums.CurrencyListEnums;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;

@@ -1,8 +1,8 @@
-package com.opencart.demo.pages;
+package framework.pages;
 
-import com.opencart.demo.components.Products;
-import com.opencart.demo.enums.SortBy;
-import com.opencart.demo.helper.Helpers;
+import framework.components.Products;
+import framework.enums.SortBy;
+import framework.helper.Helpers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;

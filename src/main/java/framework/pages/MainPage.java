@@ -1,19 +1,16 @@
-package com.opencart.demo.pages;
+package framework.pages;
 
-import com.opencart.demo.components.NavigationBar;
-import com.opencart.demo.components.Products;
-import com.opencart.demo.components.TopMenuComponents;
-import com.opencart.demo.enums.CurrencyListEnums;
-import com.opencart.demo.helper.Helpers;
+import framework.components.NavigationBar;
+import framework.components.Products;
+import framework.components.TopMenuComponents;
+import framework.enums.CurrencyListEnums;
+import framework.helper.Helpers;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.opencart.demo.helper.Helpers.findProductByName;
 
 
 public class MainPage extends BasePage {
@@ -113,7 +110,7 @@ public class MainPage extends BasePage {
 
     // Find product by name and click
     public ProductPage findProductByNameClick(List<Products> products, String nameToSearch) {
-        Products productToCheck = findProductByName(products, nameToSearch);
+        Products productToCheck = Helpers.findProductByName(products, nameToSearch);
         waitUntilPresent(productContainerLocator, 4);
         waitUntilClickable(productContainerLocator, 4);
         productToCheck.getProductImage().click();

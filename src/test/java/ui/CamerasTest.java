@@ -1,13 +1,13 @@
 package ui;
 
-import com.opencart.demo.components.Products;
-import com.opencart.demo.pages.MainPage;
+import framework.components.Products;
+import framework.pages.MainPage;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static com.opencart.demo.helper.Helpers.findProductByName;
+import static framework.helper.Helpers.findProductByName;
 
 public class CamerasTest extends BaseTest {
     private final MainPage mainPage = new MainPage();

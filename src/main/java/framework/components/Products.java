@@ -1,11 +1,10 @@
-package com.opencart.demo.components;
+package framework.components;
 
+import framework.helper.CurrencyHelpers;
 import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-
-import static com.opencart.demo.helper.CurrencyHelpers.productPriceAsDouble;
 
 @Getter
 public class Products {
@@ -32,7 +31,7 @@ public class Products {
         this.productName = productNameWE.getText();
         this.description = container.findElement(By.xpath(".//div[@class='description']//p")).getText();
         this.productPriceCurrent = container.findElement(By.xpath(".//div[@class='price']//span[@class='price-new']")).getText();
-        this.productPriceCurrentAsDouble = productPriceAsDouble(productPriceCurrent);
+        this.productPriceCurrentAsDouble = CurrencyHelpers.productPriceAsDouble(productPriceCurrent);
 
         try {
             this.productPriceOld = container.findElement(By.xpath(".//div[@class='price']//span[@class='price-old']")).getText();
@@ -41,14 +40,14 @@ public class Products {
         }
 
         try {
-            this.productPriceOldAsDouble = productPriceAsDouble(productPriceOld);
+            this.productPriceOldAsDouble = CurrencyHelpers.productPriceAsDouble(productPriceOld);
         } catch (Exception e) {
             this.productPriceOldAsDouble = 0;
         }
 
         this.productTax = container.findElement(By.xpath(".//div[@class='price']//span[@class='price-tax']")).getText();
         try {
-            this.productTaxAsDouble = productPriceAsDouble(productTax);
+            this.productTaxAsDouble = CurrencyHelpers.productPriceAsDouble(productTax);
         } catch (Exception e) {
             this.productTaxAsDouble = (double) 0;
         }

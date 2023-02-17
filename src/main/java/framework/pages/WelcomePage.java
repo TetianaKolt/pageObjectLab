@@ -1,4 +1,4 @@
-package com.opencart.demo.pages;
+package framework.pages;
 
 public class WelcomePage extends BasePage {
 

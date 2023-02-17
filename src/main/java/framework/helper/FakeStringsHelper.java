@@ -1,4 +1,4 @@
-package com.opencart.demo.helper;
+package framework.helper;
 
 import com.github.javafaker.Faker;
 
