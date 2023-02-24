@@ -27,7 +27,7 @@ public abstract class BasePage {
     protected WebElement find(By locator) {
         return getDriver().findElement(locator);
     }
-    protected List<WebElement> findAll(By locator) {
+    public static List<WebElement> findAll(By locator) {
         return getDriver().findElements(locator);
     }
 
