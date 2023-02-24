@@ -4,9 +4,7 @@ import com.github.javafaker.Faker;
 import framework.components.Products;
 import framework.pages.BasePage;
 import io.qameta.allure.Attachment;
-import io.qameta.allure.Step;
 import lombok.SneakyThrows;
-import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -17,13 +15,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-@Log4j2
+import static framework.helper.FakeStringsHelper.generateScreenshotName;
+
 public class Helpers {
 
     // Gets a list product names
-    @Step("Get product names from product list")
     public static List<String> getNamesFromProductList(List<Products> actualProductsList) {
-        log.info("Get product names from product list");
         List<String> actualProductNamesList = new ArrayList<>();
         for (Products dc : actualProductsList) {
             actualProductNamesList.add(dc.getProductName().toLowerCase());
@@ -41,9 +38,7 @@ public class Helpers {
     }
 
     // Gets Prices from List of Web Elements
-    @Step("Get list of prices from product list")
     public static List<Double> getPricesFromList(List<Products> actualProductsList) {
-        log.info("Get list of [prices] as double from product list");
         List<Double> actualPricesList = new ArrayList<>();
         for (Products dc : actualProductsList) {
             actualPricesList.add(dc.getProductPriceCurrentAsDouble());
@@ -53,9 +48,7 @@ public class Helpers {
 
 
     //Finds product from the list by Name
-    @Step("Find product by [name]")
     public static Products findProductByName(List<Products> listOfProducts, String nameToFind) {
-        log.info("Find product by [name] [{}]", nameToFind);
         Products foundProduct = new Products();
         for (Products product : listOfProducts) {
             if (product.getProductName().equalsIgnoreCase(nameToFind)) {
@@ -73,7 +66,7 @@ public class Helpers {
 
     public static void scrollToElement(WebElement element) {
         JavascriptExecutor jse = (JavascriptExecutor) BasePage.getDriver();
-        jse.executeScript("arguments[0].scrollIntoView(true);",element);
+        jse.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     // Make a screenshot
@@ -81,7 +74,7 @@ public class Helpers {
     public static void makeScreenShot() {
         File scrFile = ((TakesScreenshot) BasePage.getDriver()).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile,
-                new File("/Users/olegdatsiuk/IdeaProjects/pageObjectLab/src/test/resources/sreenshots/"
+                new File("/Users/AIM/IdeaProjects/pageObjectLab/src/test/resources/screenshots"
                         + new Faker().random().hex(10) + ".png"));
     }
 

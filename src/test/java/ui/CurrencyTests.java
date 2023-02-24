@@ -2,6 +2,7 @@ package ui;
 
 import framework.components.Products;
 import framework.enums.CurrencyListEnums;
+import framework.helper.FakeStringsHelper;
 import framework.pages.MainPage;
 import framework.pages.ProductPage;
 import org.assertj.core.api.SoftAssertions;
@@ -11,6 +12,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 import static framework.helper.CurrencyHelpers.chooseCurrency;
+import static framework.helper.Helpers.takeScreenShot;
 
 public class CurrencyTests extends BaseTest {
 
@@ -18,7 +20,6 @@ public class CurrencyTests extends BaseTest {
 
     @Test //Test #4
     public void changeCurrencyTest() {
-        SoftAssertions softAssertions = new SoftAssertions();
         ProductPage productPage = new ProductPage();
         String expectedCurrencySymbolByDefault = "$";
         double expectedProductPriceUSD = 123.20;
@@ -29,6 +30,7 @@ public class CurrencyTests extends BaseTest {
         String actualCurrencySymbol = mainPage.getTopMenu()
                 .getCurrencySymbol();
 
+        SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(actualCurrencySymbol)
                 .as("The currency symbol is not as expected")
                 .isEqualTo(expectedCurrencySymbolByDefault);
@@ -54,6 +56,7 @@ public class CurrencyTests extends BaseTest {
         // Check that price 106.04
 
         double actualPriceEUR = productPage.getPrice(CurrencyListEnums.EURO);
+//        takeScreenShot(String.valueOf(actualPriceEUR));
         softAssertions.assertThat(actualPriceEUR)
                 .as("The price in EUR is not as expected")
                 .isEqualTo(expectedProductPriceEUR);
@@ -66,6 +69,7 @@ public class CurrencyTests extends BaseTest {
 
         //Check that price is 95.32
         double actualPricePOUNDS = productPage.getPrice(CurrencyListEnums.POUND_STERLING);
+//        takeScreenShot(String.valueOf(actualPricePOUNDS));
         softAssertions.assertThat(actualPricePOUNDS)
                 .as("The price in POUNDS is not as expected")
                 .isEqualTo(expectedProductPricePOUNDS);

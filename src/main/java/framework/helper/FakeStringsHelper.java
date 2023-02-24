@@ -20,5 +20,9 @@ public class FakeStringsHelper {
     public static String generateFakePassword() {
         return faker.internet().password();
     }
+
+    public static String generateScreenshotName() {
+        return faker.file().fileName();
+    }
 }
 
