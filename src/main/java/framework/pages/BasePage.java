@@ -13,16 +13,17 @@ import java.util.List;
 
 public abstract class BasePage {
 
-    protected static WebDriver driver;
+    private static final ThreadLocal<WebDriver>DRIVER_THREAD_LOCAL = new ThreadLocal<>();
+    public static ThreadLocal<WebDriver> getDriverThreadLocal() {
+        return DRIVER_THREAD_LOCAL;
+    }
 
     public static WebDriver getDriver() {
-        return driver;
+        return DRIVER_THREAD_LOCAL.get();
     }
-
-    public static void setDriver(WebDriver webDriver) {
-        driver = webDriver;
+    public static void setDriverThreadLocal(WebDriver driver) {
+        DRIVER_THREAD_LOCAL.set(driver);
     }
-
 
     protected WebElement find(By locator) {
         return getDriver().findElement(locator);
@@ -32,13 +33,13 @@ public abstract class BasePage {
     }
 
     public void clickOnWebElement(WebElement webElement) {
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
         executor.executeScript("arguments[0].click()", webElement);
     }
 
     public void hoverOverElement(By locator) {
         WebElement element = find(locator);
-        Actions action = new Actions(driver);
+        Actions action = new Actions(getDriver());
         action.moveToElement(element).perform();
     }
 

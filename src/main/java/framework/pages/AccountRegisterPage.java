@@ -19,25 +19,25 @@ public class AccountRegisterPage extends BasePage {
 
     @Step("Enter first name {firstName}")
     public AccountRegisterPage enterFirstName(String firstName) {
-        getDriver().findElement(firstNameLocator).sendKeys(firstName);
+        find(firstNameLocator).sendKeys(firstName);
         return this;
     }
 
     @Step("Enter first name {lastName}")
     public AccountRegisterPage enterLastName(String lastName) {
-        getDriver().findElement(lastNameLocator).sendKeys(lastName);
+        find(lastNameLocator).sendKeys(lastName);
         return this;
     }
 
     @Step("Enter email {email}")
     public AccountRegisterPage enterEmail(String email) {
-        getDriver().findElement(emailLocator).sendKeys(email);
+        find(emailLocator).sendKeys(email);
         return this;
     }
 
     @Step("Enter password {password}")
     public AccountRegisterPage enterPassword(String password) {
-        getDriver().findElement(passwordLocator).sendKeys(password);
+        find(passwordLocator).sendKeys(password);
         return this;
     }
 

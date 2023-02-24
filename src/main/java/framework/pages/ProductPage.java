@@ -11,7 +11,7 @@ public class ProductPage extends BasePage {
     private final By price = By.xpath("//h2/span[@class='price-new']");
 
     public TopMenuComponents getTopMenu() {
-        return new TopMenuComponents(getDriver().findElement(mainPageTopMenuContainerLocator));
+        return new TopMenuComponents(find(mainPageTopMenuContainerLocator));
     }
 
     // Change the currency and find the product price

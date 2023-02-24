@@ -11,16 +11,20 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-
         <log4j.version>2.17.2</log4j.version>
         <allure.integration.version>2.12.0</allure.integration.version>
         <aspectj.version>1.9.19</aspectj.version>
+        <!--    default values  -->
+        <suite>testng.xml</suite>
+        <browserWidth>1920</browserWidth>
+        <browserHeight>1080</browserHeight>
+        <browser>CHROME</browser>
 
     </properties>
 
-    <!--    Selenium    -->
-
     <dependencies>
+        <!--    Selenium    -->
+
         <!--        <dependency>-->
         <!--            <groupId>org.seleniumhq.selenium</groupId>-->
         <!--            <artifactId>selenium-java</artifactId>-->
@@ -117,13 +121,29 @@
                 <version>3.0.0-M9</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>runAllTests.xml</suiteXmlFile>
-<!--                        <suiteXmlFile>/Users/AIM/IdeaProjects/pageObjectLab/testSuits/runAllTests.xml</suiteXmlFile>-->
+                        <suiteXmlFile>${suite}</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+
+                    <!--Browser, browser Width, browser Height  -->
+
+                    <systemPropertyVariables>
+                        <browser.width>${browserWidth}</browser.width>
+                        <browser.height>${browserHeight}</browser.height>
+                        <browser.type>${browser}</browser.type>
+                    </systemPropertyVariables>
+
+                    <!-- Parallelization -->
+
+                    <parallel>tests</parallel>
+                    <threadCount>4</threadCount>
+                    <perCoreThreadCount>false</perCoreThreadCount>
+
                 </configuration>
+
+                <!-- AssertJ IN PLUGIN -->
                 <dependencies>
                     <dependency>
                         <groupId>org.aspectj</groupId>
