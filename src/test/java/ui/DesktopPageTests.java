@@ -27,7 +27,7 @@ public class DesktopPageTests extends BaseTest {
         String expectedQnttInShow = "10";
         desktopsPage = mainPage.hoverOverDesktops()
                 .clickOnShowAllDesktops();
-        String actualQnttInShow = desktopsPage.getValueFromShowQnttOption();
+        String actualQnttInShow = desktopsPage.getValueFromShowQuantityOption();
 
         softAssertions.assertThat(actualQnttInShow)
                 .as("Actual quantity of elements in Show is not as expected")
@@ -58,7 +58,7 @@ public class DesktopPageTests extends BaseTest {
 
         expectedQunttOfProducts = 12;
         String expectedQnttTextOnTheBottom = "Showing 1 to 12 of 12 (1 Pages)";
-        actualQunttOfProducts = desktopsPage.chooseShowQnttOption("25")
+        actualQunttOfProducts = desktopsPage.chooseShowQuantityOption("25")
                 .getAllProducts().size();
         String actualQnttTextOnTheBottom = desktopsPage.getTextShownOnTheBottom();
 
@@ -81,7 +81,7 @@ public class DesktopPageTests extends BaseTest {
         Collections.sort(expectedNames);
 
         softAssertions.assertThat(actualProductNamesList)
-                .as("Names are not sorted properly")
+                .as("Names are not sorted properly in " + SortBy.MODEL_A_Z)
                 .containsExactlyElementsOf(expectedNames);
 
         //Check 'Price (Low > High)'
@@ -94,7 +94,7 @@ public class DesktopPageTests extends BaseTest {
         Collections.sort(expectedPricesSortedList);
 
         softAssertions.assertThat(actualPricesList)
-                .as("The price of the first product is bigger than the second")
+                .as("The prices are not sorted according to "+SortBy.PRICE_LOW_HIGH)
                 .containsExactlyElementsOf(expectedPricesSortedList);
 
         softAssertions.assertAll();

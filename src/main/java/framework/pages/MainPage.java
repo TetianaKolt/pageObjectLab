@@ -4,7 +4,9 @@ import framework.components.NavigationBar;
 import framework.components.Products;
 import framework.components.TopMenuComponents;
 import framework.enums.CurrencyListEnums;
+import framework.helper.CurrencyHelpers;
 import framework.helper.Helpers;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -12,7 +14,7 @@ import org.openqa.selenium.interactions.Actions;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Log4j2
 public class MainPage extends BasePage {
     private final By mainPageTopMenuContainerLocator = By.id("top");
     private final By navigationBarLocator = By.id("menu");
@@ -23,11 +25,11 @@ public class MainPage extends BasePage {
     private final By productContainerLocator = By.xpath("//div[@class='product-thumb']");
 
     public TopMenuComponents getTopMenu() {
-        return new TopMenuComponents(getDriver().findElement(mainPageTopMenuContainerLocator));
+        return new TopMenuComponents(find(mainPageTopMenuContainerLocator));
     }
 
     public NavigationBar getNavigationBar() {
-        return new NavigationBar(getDriver().findElement(navigationBarLocator));
+        return new NavigationBar(find(navigationBarLocator));
     }
 
     public Actions getActions() {
