@@ -22,7 +22,11 @@ public class ProductPage extends BasePage {
     @Step("Get product price")
     public double getPrice(CurrencyListEnums currency) {
         getTopMenu().getCurrency().click();
-        CurrencyHelpers.chooseCurrency(getTopMenu().getCurrencyList(), currency);
+        try {
+            CurrencyHelpers.chooseCurrency(getTopMenu().getCurrencyList(), currency);
+        }catch (org.openqa.selenium.StaleElementReferenceException ex){
+            CurrencyHelpers.chooseCurrency(getTopMenu().getCurrencyList(),currency);
+        }
         waitUntilPresent(price, 5);
         log.info("Get [price] in [currency] {}",currency);
         String priceStr = find(price).getText();
