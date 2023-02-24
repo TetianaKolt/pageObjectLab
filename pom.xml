@@ -15,10 +15,11 @@
         <allure.integration.version>2.12.0</allure.integration.version>
         <aspectj.version>1.9.19</aspectj.version>
         <!--    default values  -->
-        <suite>testng.xml</suite>
+        <suite>runAllTests.xml</suite>
         <browserWidth>1920</browserWidth>
         <browserHeight>1080</browserHeight>
         <browser>CHROME</browser>
+        <threadCountQuantity>4</threadCountQuantity>
 
     </properties>
 
@@ -138,7 +139,7 @@
                     <!-- Parallelization -->
 
                     <parallel>tests</parallel>
-                    <threadCount>4</threadCount>
+                    <threadCount>${threadCountQuantity}</threadCount>
                     <perCoreThreadCount>false</perCoreThreadCount>
 
                 </configuration>
