@@ -63,7 +63,7 @@ public class MainPage extends BasePage {
     return new BrandsPage();
   }
 
-  // Hover over "Desctops" to see the dropdown list
+  // Hover over "Desktops" to see the dropdown list
   public MainPage hoverOverDesktops() {
     hoverOverElement(desktopButtonLocator);
     waitUntilVisible(dropDownListSeeAllDesktopsLocator, 1);
